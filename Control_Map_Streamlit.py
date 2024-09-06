@@ -59,7 +59,7 @@ def main():
     
                     # Export and replace the original CSV files with the cleaned Dataframe
                     csv_filename = f"{sheet}.csv"
-                    df.to_csv(csv_filename, header=None, index=False)
+                    df.to_csv(csv_filename, header=None, index=False, float_format='%.0f')
                     csv_files.append(csv_filename)
     
                     
