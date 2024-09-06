@@ -58,7 +58,7 @@ def main():
                     df.drop(nan_cols, axis=1, inplace=True)
 
                     # Convert all values to integers, to ensure there is no decimal number
-                    df = df.astype(int)
+                    df = df.apply(pd.to_numeric).astype(int)
     
                     # Export and replace the original CSV files with the cleaned Dataframe
                     csv_filename = f"{sheet}.csv"
