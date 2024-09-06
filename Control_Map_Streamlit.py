@@ -56,10 +56,13 @@ def main():
     
                     # Drop all the columns with NaN value(s)
                     df.drop(nan_cols, axis=1, inplace=True)
+
+                    # Convert all values to integers, to ensure there is no decimal number
+                    df = df.astype(int)
     
                     # Export and replace the original CSV files with the cleaned Dataframe
                     csv_filename = f"{sheet}.csv"
-                    df.to_csv(csv_filename, header=None, index=False, float_format='%.0f')
+                    df.to_csv(csv_filename, header=None, index=False)
                     csv_files.append(csv_filename)
     
                     
