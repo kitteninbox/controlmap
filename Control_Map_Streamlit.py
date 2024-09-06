@@ -70,6 +70,9 @@ def main():
                     # Debug: Check the data after conversion
                     st.write(f"Data after conversion to integers from sheet {sheet}:")
                     st.write(df)
+
+                    # Convert DataFrame to string format with integer values
+                    df_str = df.applymap(str)
     
                     # Export and replace the original CSV files with the cleaned Dataframe
                     csv_filename = f"{sheet}.csv"
