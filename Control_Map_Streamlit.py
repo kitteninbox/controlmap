@@ -80,17 +80,17 @@ def main():
                 txt_files.append(txt_filename)
                 
 
-                # Download buttons
-                if st.button('Download All CSV Files'):
-                    for i, csv_file in enumerate(csv_files):
-                        tmp_download_link = download_link(pd.read_csv(csv_file), csv_file, f'Click here to download {csv_file}!')
-                        st.markdown(tmp_download_link, unsafe_allow_html=True)
+            # Download buttons
+            if st.button('Download All CSV Files'):
+                for i, csv_file in enumerate(csv_files):
+                    tmp_download_link = download_link(pd.read_csv(csv_file), csv_file, f'Click here to download {csv_file}!')
+                    st.markdown(tmp_download_link, unsafe_allow_html=True)
 
-                if st.button('Download All TXT Files'):
-                    for i, txt_file in enumerate(txt_files):
-                        with open(txt_file, 'r') as file:
-                            tmp_download_link = download_link(file.read(), txt_file, f'Click here to download {txt_file}!')
-                        st.markdown(tmp_download_link, unsafe_allow_html=True)
+            if st.button('Download All TXT Files'):
+                for i, txt_file in enumerate(txt_files):
+                    with open(txt_file, 'r') as file:
+                        tmp_download_link = download_link(file.read(), txt_file, f'Click here to download {txt_file}!')
+                    st.markdown(tmp_download_link, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
