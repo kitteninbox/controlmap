@@ -46,40 +46,41 @@ def main():
 
             # Loop through the sheets and export each of them into individual csv file
             for sheet in xls.sheet_names:
-                df = pd.read_excel(xls, sheet_name=sheet, header=None)
-
-
-                ## CLEANING
-                # Identify the columns which contain any NaN value(s)
-                nan_cols = df.columns[df.isna().any()].to_list()
-
-                # Drop all the columns with NaN value(s)
-                df.drop(nan_cols, axis=1, inplace=True)
-
-                # Export and replace the original CSV files with the cleaned Dataframe
-                csv_filename = f"{sheet}.csv"
-                df.to_csv(csv_filename, header=None, index=False)
-                csv_files.append(csv_filename)
-
-                
-                # Read the CSV file
-                with open(csv_filename, 'r') as file:
-                    data = file.read()
-
-                # Replace the tab characters with nothing
-                data_no_spaces = data.replace('\t', '')
-
-                # Remove the commas
-                data_no_spaces = data_no_spaces.replace(',', '')
-
-                txt_filename = f"{sheet}.txt"
-
-                with open(txt_filename, 'w') as file:
-                    file.write(data_no_spaces)
-
-                txt_files.append(txt_filename)
-                
-
+                if "pnpmap" in sheet[:6].lower():
+                    df = pd.read_excel(xls, sheet_name=sheet, header=None)
+    
+    
+                    ## CLEANING
+                    # Identify the columns which contain any NaN value(s)
+                    nan_cols = df.columns[df.isna().any()].to_list()
+    
+                    # Drop all the columns with NaN value(s)
+                    df.drop(nan_cols, axis=1, inplace=True)
+    
+                    # Export and replace the original CSV files with the cleaned Dataframe
+                    csv_filename = f"{sheet}.csv"
+                    df.to_csv(csv_filename, header=None, index=False)
+                    csv_files.append(csv_filename)
+    
+                    
+                    # Read the CSV file
+                    with open(csv_filename, 'r') as file:
+                        data = file.read()
+    
+                    # Replace the tab characters with nothing
+                    data_no_spaces = data.replace('\t', '')
+    
+                    # Remove the commas
+                    data_no_spaces = data_no_spaces.replace(',', '')
+    
+                    txt_filename = f"{sheet}.txt"
+    
+                    with open(txt_filename, 'w') as file:
+                        file.write(data_no_spaces)
+    
+                    txt_files.append(txt_filename)
+                    
+    
             # Download buttons
             if st.button('Download All CSV Files'):
                 for i, csv_file in enumerate(csv_files):
