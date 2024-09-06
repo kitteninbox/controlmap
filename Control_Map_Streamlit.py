@@ -48,7 +48,10 @@ def main():
             for sheet in xls.sheet_names:
                 if "pnpmap" in sheet[:6].lower():
                     df = pd.read_excel(xls, sheet_name=sheet, header=None)
-    
+                    
+                    # Debug: Check the initial data
+                    st.write(f"Initial data from sheet {sheet}:")
+                    st.write(df)
     
                     ## CLEANING
                     # Identify the columns which contain any NaN value(s)
@@ -57,13 +60,25 @@ def main():
                     # Drop all the columns with NaN value(s)
                     df.drop(nan_cols, axis=1, inplace=True)
 
+                    # Debug: Check the data after cleaning
+                    st.write(f"Data after cleaning from sheet {sheet}:")
+                    st.write(df)
+
                     # Convert all values to integers, to ensure there is no decimal number
                     df = df.apply(pd.to_numeric).astype(int)
+
+                    # Debug: Check the data after conversion
+                    st.write(f"Data after conversion to integers from sheet {sheet}:")
+                    st.write(df)
     
                     # Export and replace the original CSV files with the cleaned Dataframe
                     csv_filename = f"{sheet}.csv"
                     df.to_csv(csv_filename, header=None, index=False)
                     csv_files.append(csv_filename)
+
+                    # Debug: Check the CSV content
+                    st.write(f"CSV content for sheet {sheet}:")
+                    st.write(pd.read_csv(csv_filename, header=None))
     
                     
                     # Read the CSV file
