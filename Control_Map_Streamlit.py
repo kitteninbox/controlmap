@@ -4,6 +4,19 @@ import base64
 import os
 import zipfile
 
+css = """
+<style>
+[data-testid="stToolbar"] {
+    visibility: hidden;
+}
+</style>
+"""
+
+st.markdown(
+    css,
+    unsafe_allow_html=True
+)
+
 # Create a function that facilitates file download
 def download_link(object_to_download, download_filename, download_link_text):
     if isinstance(object_to_download, pd.DataFrame):
@@ -80,7 +93,7 @@ def main():
                 if os.path.exists(csv_file):  # Check if the file exists
                     ## st.write("Check for one last time before downloading the file...")
                     ## st.write(pd.read_csv(csv_file, header=None))
-                    tmp_download_link = download_link(pd.read_csv(csv_file, header=None), csv_file, f'Click here to download {csv_file}!')
+                    tmp_download_link = download_link(pd.read_csv(csv_file, header=None), csv_file, f'Click here to download {csv_file}')
                     st.markdown(tmp_download_link, unsafe_allow_html=True)
                 else:
                     st.error(f"File {csv_file} does not exist.")  # Error message if file doesn't exist
@@ -89,7 +102,7 @@ def main():
             for i, txt_file in enumerate(txt_files):  # Added enumerate to ensure unique IDs
                 if os.path.exists(txt_file):  # Check if the file exists
                     with open(txt_file, 'r') as file:
-                        tmp_download_link = download_link(file.read(), txt_file, f'Click here to download {txt_file}!')
+                        tmp_download_link = download_link(file.read(), txt_file, f'Click here to download {txt_file}')
                     st.markdown(tmp_download_link, unsafe_allow_html=True)
                 else:
                     st.error(f"File {txt_file} does not exist.")  # Error message if file doesn't exist
