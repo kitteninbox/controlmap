@@ -25,7 +25,7 @@ def main():
         for xlsx_file in xlsx_files:
             xls = pd.ExcelFile(xlsx_file)
 
-            st.write(f"It's gonna take a while to convert, please wait...")
+            st.write(f"It's gonna take a while to convert, please wait until the download buttons appear...")
 
             for sheet in xls.sheet_names:
                 if "pnpmap" in sheet[:6].lower():  # Ensure only relevant sheets are processed
