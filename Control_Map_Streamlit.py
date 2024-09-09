@@ -56,7 +56,7 @@ def main():
                     # Export to CSV
                     csv_filename = f"{sheet}.csv"
                     df.to_csv(csv_filename, 
-                              header=None,
+                              header=False,
                               index=False)
 
                     # Debug: Check the CSV content
