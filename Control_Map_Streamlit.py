@@ -71,6 +71,8 @@ def main():
                         file.write(data_no_spaces)
                     txt_files.append(txt_filename)
 
+        st.write(f"It's gonna take a while to convert, please wait...")
+
         if st.button('Download All CSV Files'):  # Added unique button ID handling
             for i, csv_file in enumerate(csv_files):  # Added enumerate to ensure unique IDs
                 if os.path.exists(csv_file):  # Check if the file exists
