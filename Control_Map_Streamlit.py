@@ -41,7 +41,7 @@ def main():
                     st.write(df)
 
                     # Convert all values to integers
-                    df = df.astype(str)  # Ensure all values are integers
+                    df = df.astype(int)  # Ensure all values are integers
 
                     # Debug: Check the data after conversion
                     st.write(f"Data after conversion to integers from sheet {sheet}:")
@@ -73,6 +73,8 @@ def main():
         if st.button('Download All CSV Files'):  # Added unique button ID handling
             for i, csv_file in enumerate(csv_files):  # Added enumerate to ensure unique IDs
                 if os.path.exists(csv_file):  # Check if the file exists
+                    st.write("Check for one last time before downloading the file...")
+                    st.write(csv_file)
                     tmp_download_link = download_link(pd.read_csv(csv_file), csv_file, f'Click here to download {csv_file}!')
                     st.markdown(tmp_download_link, unsafe_allow_html=True)
                 else:
