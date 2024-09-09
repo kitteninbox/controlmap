@@ -41,7 +41,7 @@ def main():
                     st.write(df)
 
                     # Convert all values to integers
-                    df = df.astype(int)  # Ensure all values are integers
+                    df = df.astype(str)  # Ensure all values are integers
 
                     # Debug: Check the data after conversion
                     st.write(f"Data after conversion to integers from sheet {sheet}:")
@@ -52,7 +52,7 @@ def main():
 
                     # Export to CSV
                     csv_filename = f"{sheet}.csv"
-                    df_str.to_csv(csv_filename, header=None, index=False)
+                    df.to_csv(csv_filename, header=None, index=False)
 
                     # Debug: Check the CSV content
                     st.write(f"CSV content for sheet {sheet}:")
