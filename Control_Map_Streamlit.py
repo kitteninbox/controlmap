@@ -55,7 +55,9 @@ def main():
 
                     # Export to CSV
                     csv_filename = f"{sheet}.csv"
-                    df.to_csv(csv_filename, header=False, index=False)
+                    df.to_csv(csv_filename, 
+                              # header=None,
+                              index=False)
 
                     # Debug: Check the CSV content
                     ## st.write(f"CSV content for sheet {sheet}:")
