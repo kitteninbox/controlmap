@@ -48,7 +48,7 @@ def main():
                     st.write(df)
 
                     # Convert DataFrame to string format with integer values
-                    # df_str = df.applymap(str)
+                    df_str = df.applymap(str)
 
                     # Export to CSV
                     csv_filename = f"{sheet}.csv"
