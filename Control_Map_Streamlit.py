@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import base64
 import os
+import zipfile
 
 # Create a function that facilitates file download
 def download_link(object_to_download, download_filename, download_link_text):
@@ -29,23 +30,23 @@ def main():
                     df = pd.read_excel(xls, sheet_name=sheet, header=None)
 
                     # Debug: Check the initial data
-                    st.write(f"Initial data from sheet {sheet}:")
-                    st.write(df)
+                    ## st.write(f"Initial data from sheet {sheet}:")
+                    ## st.write(df)
 
                     # CLEANING
                     nan_cols = df.columns[df.isna().any()].to_list()
                     df.drop(nan_cols, axis=1, inplace=True)
 
                     # Debug: Check the data after cleaning
-                    st.write(f"Data after cleaning from sheet {sheet}:")
-                    st.write(df)
+                    ## st.write(f"Data after cleaning from sheet {sheet}:")
+                    ## st.write(df)
 
                     # Convert all values to integers
                     df = df.astype(int)  # Ensure all values are integers
 
                     # Debug: Check the data after conversion
-                    st.write(f"Data after conversion to integers from sheet {sheet}:")
-                    st.write(df)
+                    ## st.write(f"Data after conversion to integers from sheet {sheet}:")
+                    ## st.write(df)
 
                     # Convert DataFrame to string format with integer values
                     df_str = df.applymap(str)
@@ -55,8 +56,8 @@ def main():
                     df.to_csv(csv_filename, header=None, index=False)
 
                     # Debug: Check the CSV content
-                    st.write(f"CSV content for sheet {sheet}:")
-                    st.write(pd.read_csv(csv_filename, header=None))
+                    ## st.write(f"CSV content for sheet {sheet}:")
+                    ## st.write(pd.read_csv(csv_filename, header=None))
 
                     csv_files.append(csv_filename)
 
@@ -73,8 +74,8 @@ def main():
         if st.button('Download All CSV Files'):  # Added unique button ID handling
             for i, csv_file in enumerate(csv_files):  # Added enumerate to ensure unique IDs
                 if os.path.exists(csv_file):  # Check if the file exists
-                    st.write("Check for one last time before downloading the file......")
-                    st.write(pd.read_csv(csv_file, header=None))
+                    ## st.write("Check for one last time before downloading the file...")
+                    ## st.write(pd.read_csv(csv_file, header=None))
                     tmp_download_link = download_link(pd.read_csv(csv_file), csv_file, f'Click here to download {csv_file}!')
                     st.markdown(tmp_download_link, unsafe_allow_html=True)
                 else:
