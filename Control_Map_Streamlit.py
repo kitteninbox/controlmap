@@ -7,7 +7,7 @@ import zipfile
 # Create a function that facilitates file download
 def download_link(object_to_download, download_filename, download_link_text):
     if isinstance(object_to_download, pd.DataFrame):
-        object_to_download = object_to_download.to_csv(index=False)
+        object_to_download = object_to_download.to_csv(index=False, header=None)
 
     b64 = base64.b64encode(object_to_download.encode()).decode()
     return f'<a href="data:file/txt;base64,{b64}" download="{download_filename}">{download_link_text}</a>'
@@ -80,7 +80,7 @@ def main():
                 if os.path.exists(csv_file):  # Check if the file exists
                     ## st.write("Check for one last time before downloading the file...")
                     ## st.write(pd.read_csv(csv_file, header=None))
-                    tmp_download_link = download_link(pd.read_csv(csv_file, header=None).iloc[1:], csv_file, f'Click here to download {csv_file}!')
+                    tmp_download_link = download_link(pd.read_csv(csv_file, header=None), csv_file, f'Click here to download {csv_file}!')
                     st.markdown(tmp_download_link, unsafe_allow_html=True)
                 else:
                     st.error(f"File {csv_file} does not exist.")  # Error message if file doesn't exist
