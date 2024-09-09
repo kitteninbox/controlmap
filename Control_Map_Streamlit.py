@@ -73,8 +73,8 @@ def main():
         if st.button('Download All CSV Files'):  # Added unique button ID handling
             for i, csv_file in enumerate(csv_files):  # Added enumerate to ensure unique IDs
                 if os.path.exists(csv_file):  # Check if the file exists
-                    st.write("Check for one last time before downloading the file...")
-                    st.write(csv_file)
+                    st.write("Check for one last time before downloading the file......")
+                    st.write(pd.read_csv(csv_file, header=None))
                     tmp_download_link = download_link(pd.read_csv(csv_file), csv_file, f'Click here to download {csv_file}!')
                     st.markdown(tmp_download_link, unsafe_allow_html=True)
                 else:
