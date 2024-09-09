@@ -78,7 +78,7 @@ def main():
                 if os.path.exists(csv_file):  # Check if the file exists
                     ## st.write("Check for one last time before downloading the file...")
                     ## st.write(pd.read_csv(csv_file, header=None))
-                    tmp_download_link = download_link(pd.read_csv(csv_file), csv_file, f'Click here to download {csv_file}!')
+                    tmp_download_link = download_link(pd.read_csv(csv_file, header=None), csv_file, f'Click here to download {csv_file}!')
                     st.markdown(tmp_download_link, unsafe_allow_html=True)
                 else:
                     st.error(f"File {csv_file} does not exist.")  # Error message if file doesn't exist
