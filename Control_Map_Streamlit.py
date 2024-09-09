@@ -25,6 +25,8 @@ def main():
         for xlsx_file in xlsx_files:
             xls = pd.ExcelFile(xlsx_file)
 
+            st.write(f"It's gonna take a while to convert, please wait...")
+
             for sheet in xls.sheet_names:
                 if "pnpmap" in sheet[:6].lower():  # Ensure only relevant sheets are processed
                     df = pd.read_excel(xls, sheet_name=sheet, header=None)
@@ -70,9 +72,7 @@ def main():
                     with open(txt_filename, 'w') as file:
                         file.write(data_no_spaces)
                     txt_files.append(txt_filename)
-
-        st.write(f"It's gonna take a while to convert, please wait...")
-
+        
         if st.button('Download All CSV Files'):  # Added unique button ID handling
             for i, csv_file in enumerate(csv_files):  # Added enumerate to ensure unique IDs
                 if os.path.exists(csv_file):  # Check if the file exists
