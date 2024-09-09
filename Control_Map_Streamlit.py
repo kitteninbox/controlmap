@@ -55,7 +55,7 @@ def main():
 
                     # Export to CSV
                     csv_filename = f"{sheet}.xlsx"
-                    df.to_excel(csv_filename, header=None, index=False)
+                    df.to_excel(csv_filename, sheet_name='Sheet1', header=None, index=False)
 
                     # Debug: Check the CSV content
                     ## st.write(f"CSV content for sheet {sheet}:")
