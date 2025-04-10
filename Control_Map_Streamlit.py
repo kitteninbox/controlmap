@@ -29,7 +29,7 @@ def main():
     st.title('Control Maps Converter for ASM PNP Machines')
     # Use HTML inside markdown for custom font size
     st.markdown(
-        "<h5 style='text-align: center; color: gray;'>Developed by: Yue Hang</h4>",
+        "<h7 style='text-align: left; color: gray;'>Developed by: Yue Hang</h4>",
         unsafe_allow_html=True
     )
     
