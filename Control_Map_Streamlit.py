@@ -27,7 +27,13 @@ def download_link(object_to_download, download_filename, download_link_text):
 
 def main():
     st.title('Control Maps Converter for ASM PNP Machines')
-    st.title('Created by Yue Hang')
+    # Use HTML inside markdown for custom font size
+    st.markdown(
+        "<h5 style='text-align: center; color: gray;'>Developed by: Yue Hang</h4>",
+        unsafe_allow_html=True
+    )
+    
+    # st.title('Developed by: Yue Hang')
 
     xlsx_files = st.file_uploader("Upload the Control Map (Bond Map) from Chen Kang as is (in .xlsx format)", type=['xlsx'], accept_multiple_files=True)
 
